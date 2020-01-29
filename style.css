@@ -1,0 +1,55 @@
+#header {
+    background: rgb(48, 2, 48);
+    color: white;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 0;
+}
+
+#aboutUs {
+    border: rgb(84, 82, 82) solid 2px;
+}
+
+#aboutBox {
+    width: 90%;
+    margin: auto;
+}
+
+#findBtn {
+    height: 60px;
+    width: 40%;
+    margin: auto;
+    background: rgb(48, 2, 48);
+    color: white;
+    font-size: 30px;
+}
+
+.buttonDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-body {
+    padding: 20px;
+}
+
+.mainTitle {
+    font-size: 60px;
+    color: white;
+}
+
+.subtitle {
+    font-style: italic;
+    color: white;
+}
+
+#dog1 {
+    height: 200px;
+}
+
+#centerImages {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

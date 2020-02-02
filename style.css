@@ -53,3 +53,48 @@
     align-items: center;
     justify-content: center;
 }
+
+#dogcatBtn {
+    padding-bottom: 30px;
+}
+
+.animalBtn {
+    width: 300px;
+}
+
+#secondPageHeader {
+    margin-top: 50px;
+}
+
+.secondPageText {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+#secondPageSection, #wholeThirdSection {
+    border: rgb(205, 142, 205) 2px solid;
+    width: 80%;
+    justify-content: center;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.questons {
+    border: rgb(205, 142, 205) 2px solid;
+    width: 80%;
+    justify-content: center;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.questionBtn {
+    font-size: 25px;
+    background: rgb(37, 1, 37);
+    color: white;
+    margin: 20px;
+}
+
+.eachQ {
+    display: block;
+}
+

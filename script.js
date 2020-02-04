@@ -18,68 +18,111 @@ $("#findBtn").on("click", function(){
     
 });
 
+function appendBackButton () {
+  var div = $("<div>");
+  var innerDiv = $("<div>");
+  var button = $("<button>");
 
+  div.addClass("level");
+  innerDiv.addClass("level-item has-text-centered");
+  div.append(innerDiv);
+  button.text("Go Back");
+  button.attr("id", "findBtn");
+  innerDiv.append(button);
+  button.addClass("backButton");
+
+  $("#fourthPage").append(div);
+}
 
 function options (results) {
 
-  
   for (var i = 0; i < results.length; i++) {
+
+    console.log(i); //FOR DEBUG
+
     var div = $("<div>");
-    div.text("Main Div Appended");
-
-    var nameDiv = $("<div>");
-    nameDiv.text("Name Div Text");
-    /*var imgDiv = $("<div>");
-    var descriptionDiv = $("<div>");
-    var contactDiv = $("<div>");*/
-
-    var nameInnerDiv = $("<div>");
-    /*var imgInnerDiv = $("<div>");
-    var descriptionInnerDiv = $("<div>");
-    var contactInnerDiv = $("<div>");*/
-
-    /*var img = $("<img>");
-    var description = $("<div>");
-    var contact = $("<div>");*/
-    var name = $("<h2>");
-    /*var email = $("<p>");
-    var phone = $("<p>");*/
-    
-    name.text("NAME APPENDED"/*results[i].name*/);
-    /*description.text(results[i].description);
-    img.attr("src", results[i].photos[0].medium);
     div.attr("class", "container");
+    div.addClass("questons");
+
+    //CREATE NAME
+    var nameDiv = $("<div>");
+    //nameDiv.text("Name Div Text"); //FOR DEBUG
     nameDiv.attr("class", "level");
-    imgDiv.attr("class", "level");
-    descriptionDiv.attr("class", "level");
-    contactDiv.attr("class", "level");
-    email.text(results[i].contact.email);
-    phone.text(results[i].contact.phone);
-    contact.append(email);
-    contact.append(phone);*/
+    nameDiv.addClass("name");
+  
+    var nameInnerDiv = $("<div>");
+    nameInnerDiv.attr("class", "level-item has-text-centered");
+
+    var name = $("<h2>");
+    name.text(results[i].name);
+    console.log(results[i].name); //FOR DEBUG
 
     nameInnerDiv.append(name);
-    /*imgInnerDiv.append(img);
-    descriptionInnerDiv.append(description);
-    contactInnerDiv.append(contact);*/
-
     nameDiv.append(nameInnerDiv);
-    nameInnerDiv.text("Name Inner Div Text");
-    /*imgDiv.append(imgInnerDiv);
-    descriptionDiv.append(descriptionInnerDiv);
-    contactDiv.append(contactInnerDiv);*/
-
     div.append(nameDiv);
 
-    /*div.append(imgDiv);
-    div.append(descriptionDiv);
-    div.append(contactDiv);*/
-
-    $("#fourthPage").append(div);
-
-  }
+    //CREATE IMG
+    var imgDiv = $("<div>");
+    //nameDiv.text("Name Div Text"); //FOR DEBUG
+    imgDiv.attr("class", "level");
   
+    var imgInnerDiv = $("<div>");
+    imgInnerDiv.attr("class", "level-item has-text-centered");
+
+    var img = $("<img>");
+    img.attr("src", results[i].photos[0].medium);
+    //console.log(results[i].name); //FOR DEBUG
+
+    imgInnerDiv.append(img);
+    imgDiv.append(imgInnerDiv);
+    div.append(imgDiv);
+
+    //CREATE DESCRIPTION
+    var descriptionDiv = $("<div>");
+    //nameDiv.text("Name Div Text"); //FOR DEBUG
+    descriptionDiv.attr("class", "level");
+    descriptionDiv.addClass("animalOptionText");
+    descriptionDiv.addClass("descriptionWidth");
+  
+    var descriptionInnerDiv = $("<div>");
+    descriptionInnerDiv.attr("class", "level-item has-text-centered");
+
+    var description = $("<div>");
+    description.text(results[i].description);
+    description.addClass("has-class-centered");
+    console.log(results[i].description); //FOR DEBUG
+
+    descriptionInnerDiv.append(description);
+    descriptionDiv.append(descriptionInnerDiv);
+    div.append(descriptionDiv);
+
+    //CREATE CONTACT
+    var contactDiv = $("<div>");
+    //nameDiv.text("Name Div Text"); //FOR DEBUG
+    contactDiv.attr("class", "level");
+    contactDiv.addClass("animalOptionText");
+  
+    var contactInnerDiv = $("<div>");
+    contactInnerDiv.attr("class", "level-item has-text-centered");
+
+    var email = $("<p>");
+    var phone = $("<p>");
+    email.text(results[i].contact.email);
+    phone.text(results[i].contact.phone);
+    var contact = $("<div>");
+    contact.append(email);
+    contact.append(phone);
+
+    //console.log(results[i].description); //FOR DEBUG
+
+    contactInnerDiv.append(contact);
+    contactDiv.append(contactInnerDiv);
+    div.append(contactDiv);
+    
+    $("#fourthPage").append(div);
+  }
 }
+
 
 
 //Creating necessary authorization token based on client ID and secret code (FROM POSTMAN)
@@ -123,41 +166,12 @@ var token_settings = {
 
         fact_type = animal_type;
 
-          
-        // })
-        // fetch(
-        //   'https://some-random-api.ml/facts/dog',
-        //   {method: 'GET'}
-        // )
-        // .then(res => res.json())
-        // .then(json => console.log(json))
-        // .catch(err => console.error('error:' , err))
-
-  //       .then(function() {
-
-  //   console.log(response);
-  // });
-
-  // var settings = {
-  //   "url": "https://some-random-api.ml/facts/dog",
-  //   "method": "GET",
-  //   "timeout": 0,
-  //   "headers": {
-  //     "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImQzMzE2ZGNiNWM1NzQ0ZWRmODg1MzhkYmJkMzU1MGI3ZGE3YTE5ZTI5ZWIyM2UyMmMxMmM2Nzk4MGJiNWRlYWE5MDhkZDdmMmMwY2M5MjMwIn0.eyJhdWQiOiJVY1ZrUGs1R1paQ3o3ZkppdHFkd2ZVdUIzWHlLdGdmVTlXYXNFMGRxZjFEVWVNZVdDVyIsImp0aSI6ImQzMzE2ZGNiNWM1NzQ0ZWRmODg1MzhkYmJkMzU1MGI3ZGE3YTE5ZTI5ZWIyM2UyMmMxMmM2Nzk4MGJiNWRlYWE5MDhkZDdmMmMwY2M5MjMwIiwiaWF0IjoxNTgwMjYwMjAyLCJuYmYiOjE1ODAyNjAyMDIsImV4cCI6MTU4MDI2MzgwMiwic3ViIjoiIiwic2NvcGVzIjpbXX0.OGifD4ZA-Ekyadj5hfopWixpqsQsTF1rmUrRlB2-cbrt6DjfR0nl7I3uQM3LciMdbry-cLrCb-U_q5dUiUWRywjyNxL60nZ7ndzNDe_7PptqXoFhBdKW0fH-WlujhazEtndiLrLKDN9P8FuhNPmJq9YssiXGLNKGS1_1RxZzONNyaEhwwpyUFkprLMxdH4ZwDhS0eqlbwBE42slVDRSvWjLfmHm8K6ycmwvJiF_cK8CZj6ADP3fMMZbmD8JobPilZJah2rBGXxOD4NOGdwnEYTeecN7aQEkX0XtUIEwr0irlQRqeuuHOzfqi0pad7WiOAzvDWuEYzXuJVydiL31GxA"
-  //   },
-  // };
-  // $.ajax(settings).done(function (response) {
-  //   console.log(response);
-  // });
-
-
-
 
 
         console.log(animal_type);
         
         var settings = {
-            "url": "https://api.petfinder.com/v2/animals?type=" + animal_type + "&page=2",
+            "url": "https://api.petfinder.com/v2/animals?type=" + animal_type + "&page=1",
             "method": "GET",
             "timeout": 0,
             "headers": {
@@ -168,18 +182,20 @@ var token_settings = {
         //using ajax to access petfinder api info
         $.ajax(settings).done(function (response) {
         console.log(response);
+
+        var options_arr = response;
+        console.log(options_arr); //FOR DEBUG
+
         $(".questionBtn").on("click", function(){
           console.log("QUESTION BUTTON CLICKED");
           var value = $(this).attr("data-val");
           console.log(value);
 
-        
-
-
           if ($(this).attr("data-q") == "gender") {
             var gender = value;
             
             for(i = 0; i < response.animals.length; i++){
+                console.log(response.animals[i].gender); //FOR DEBUG
                 if ((response.animals[i].gender.toLowerCase() == gender) && (response.animals[i].photos.length > 0)){
                     console.log("inside if statement");
                     correct_gender_animals.push(response.animals[i]);
@@ -233,7 +249,16 @@ var token_settings = {
           $("#thirdPage").hide();
           $("#fourthPage").show();
           options(correct_age);
+          appendBackButton();
         }
+
+        /*$(".backButton").on("click", function() {
+          $("#startPage").show();
+          $("#secondPage").hide();
+          $("#thirdPage").hide();
+          $("#fourthPage").hide();
+        });*/
+
         });
         
 
@@ -247,4 +272,76 @@ var token_settings = {
     });
 
 }); 
+
+
+
+
+
+/*function test (options) {
+  $(".questionBtn").on("click", function(){
+    console.log("QUESTION BUTTON CLICKED");
+    var value = $(this).attr("data-val");
+    console.log(value);
+
+    if ($(this).attr("data-q") == "gender") {
+      var gender = value;
+      
+      for(i = 0; i < response.animals.length; i++){
+          console.log(response.animals[i].gender); //FOR DEBUG
+          if ((response.animals[i].gender.toLowerCase() == gender) && (response.animals[i].photos.length > 0)){
+              console.log("inside if statement");
+              correct_gender_animals.push(response.animals[i]);
+          }
+      }
+      console.log(correct_gender_animals);
+    }
+
+    if ($(this).attr("data-q") == "size") {
+      // console.log(correct_gender_animals);
+      var size = value;
+      
+
+      for(i = 0; i < correct_gender_animals.length; i++){
+        if (correct_gender_animals[i].size.toLowerCase() == size){
+          console.log("inside if statement");
+          correct_size.push(correct_gender_animals[i]);
+       }
+    }
+      console.log(correct_size)
+    }
+
+    if ($(this).attr("data-q") == "age") {
+      var age = value;
+      
+      for(i = 0; i < correct_size.length; i++) {
+          if (correct_size[i].age.toLowerCase() == age){
+              correct_age.push(correct_size[i]);
+          }
+      }
+      console.log(correct_age)
+    }
+
+    count++;
+  if (count == 1) {
+    $("#questionOne").show();
+    $("#questionTwo").hide();
+    $("#questionThree").hide();
+  } else if (count ==2) {
+    $("#questionOne").hide();
+    $("#questionTwo").show();
+    $("#questionThree").hide();
+  } else if (count == 3) {
+    $("#questionOne").hide();
+    $("#questionTwo").hide();
+    $("#questionThree").show(); 
+  } else if (count == 4) {
+    console.log("SHOWING FOURTH PAGE***************************");
+    $("#startPage").hide();
+    $("#secondPage").hide();
+    $("#thirdPage").hide();
+    $("#fourthPage").show();
+    options(correct_age);
+  }
+  });
+}*/
 

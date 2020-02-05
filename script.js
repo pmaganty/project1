@@ -10,6 +10,8 @@ $( document ).ready(function() {
   var size;
   var animal_type;
 
+  //audioElement.play();
+
 
 $("#secondPage").hide();
 $("#thirdPage").hide();

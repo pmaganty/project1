@@ -18,7 +18,7 @@ This web application is intented to increase efficiencies and reduce wait time f
 
 ## Images
 
-![]() 
+![Forever Furry Friends](/images/foreverfurryfriends.png) 
 
 ## Built With
 
